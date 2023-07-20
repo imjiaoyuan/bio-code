@@ -41,6 +41,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+    - name: Download result.out
+      uses: actions/download-artifact@v2
+      with:
+        name: result
+        path: ./
     - name: Install dependencies
       run: |
         sudo sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
