@@ -75,7 +75,7 @@ jobs:
       run: |
         sudo sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
         sudo apt-get update && sudo apt-get install python3-pip -y
-        sudo sed -i "s/SPECIES/${{ env.SPECIES }}/g" extract_sequence.py
+        sudo sed -i "s/SPECIES/${{ secrets.SPECIES }}/g" extract_sequence.py
         pip install biopython -i https://mirrors.aliyun.com/pypi/simple/
     - name: Run script
       run: |
