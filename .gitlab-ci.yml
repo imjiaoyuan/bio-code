@@ -1,0 +1,62 @@
+default:
+  image:  ubuntu:latest
+
+stages:
+  - defining_species
+  - hmmer_search
+  - extract_id
+  - extract_sequence
+
+hmmer_search:
+  stage: hmmer_search
+  before_script:
+    - sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
+    - apt-get update && apt-get install -y build-essential gcc python3
+    - tar -xvf hmmer.tar.gz
+    - cd hmmer-3.3.2
+    - ./configure
+    - make
+    - make install
+    - export PATH="$PATH:~/hmmer-3.3.2/bin"
+    - cd ..
+    - python3 main.py
+  script:
+    - ls -la
+    - chmod +x PFseed.txt
+    - hmmbuild build.hmm PFseed.txt
+    - hmmsearch build.hmm ./protein_sequence/$SPECIES.fasta > result.out
+  artifacts:
+    paths:
+      - result.out
+  only:
+    - example
+
+extract_id:
+  stage: extract_id
+  before_script:
+    - sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
+    - apt-get update && apt-get install python3 -y
+  script:
+    - chmod +x extract_id.py
+    - python3 extract_id.py
+  artifacts:
+    paths:
+      - id_list.txt
+  only:
+    - example
+
+extract_sequence:
+  stage: extract_sequence
+  before_script:
+    - sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
+    - apt-get update && apt-get install python3-pip -y
+    - sed -i "s/SPECIES/$SPECIES/g" extract_sequence.py
+    - pip install biopython -i https://mirrors.aliyun.com/pypi/simple/
+  script:
+    - chmod +x extract_sequence.py
+    - python3 extract_sequence.py
+  artifacts:
+    paths:
+      - protein_for_target_id.fasta
+  only:
+    - example

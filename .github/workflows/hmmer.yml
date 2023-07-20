@@ -1,0 +1,78 @@
+name: CI
+
+on: 
+  push:
+    branches:
+      - example
+
+jobs:
+  hmmer_search:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        sudo sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
+        sudo apt-get update && sudo apt-get install -y build-essential gcc python3
+        tar -xvf hmmer.tar.gz
+        cd hmmer-3.3.2
+        ./configure
+        make
+        sudo make install
+        export PATH="$PATH:~/hmmer-3.3.2/bin"
+        cd ..
+        python3 main.py
+    - name: Run script
+      run: |
+        ls -la
+        chmod +x PFseed.txt
+        hmmbuild build.hmm PFseed.txt
+        hmmsearch build.hmm ./protein_sequence/${{ secrets.SPECIES }}.fasta > result.out
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: result
+        path: result.out
+
+  extract_id:
+    needs: hmmer_search
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        sudo sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
+        sudo apt-get update && sudo apt-get install python3 -y
+    - name: Run script
+      run: |
+        chmod +x extract_id.py
+        python3 extract_id.py
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ids
+        path: id_list.txt
+
+  extract_sequence:
+    needs: extract_id
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        sudo sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
+        sudo apt-get update && sudo apt-get install python3-pip -y
+        sudo sed -i "s/SPECIES/${{ env.SPECIES }}/g" extract_sequence.py
+        pip install biopython -i https://mirrors.aliyun.com/pypi/simple/
+    - name: Run script
+      run: |
+        chmod +x extract_sequence.py
+        python3 extract_sequence.py
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: sequences
+        path: protein_for_target_id.fasta
