@@ -51,6 +51,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Download result.out
         uses: actions/download-artifact@v2
+        with:
+          name: hmmer-out
+          path: ./
       - name: Set up Python 3
         uses: actions/setup-python@v2
         with:
@@ -80,6 +83,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Download id_list.txt
         uses: actions/download-artifact@v2
+        with:
+          name: id-list
+          path: ./
       - name: Set up Python 3
         uses: actions/setup-python@v2
         with:
