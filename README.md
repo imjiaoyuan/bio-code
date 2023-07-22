@@ -12,6 +12,8 @@ You need to define the following variables in `input.py`.
 | evaluation_threshold | 1e-5 | The threshold for filtering IDs from the results of hmmsearch |
 | species | Oryza_sativa | Species of gene family |
 
+The repository only contains the genome protein sequences of three species: Arabidopsis_thaliana , Oryza_sativa , and Zea_mays .
+
 # Results
 
 You can download the completed files from the GitHub Action or Gitlab CI/CD running artifacts.
