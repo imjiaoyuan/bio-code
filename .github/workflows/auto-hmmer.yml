@@ -1,6 +1,6 @@
 name: CI
 
-on: 
+on:
   push:
     branches:
       - main
@@ -8,81 +8,96 @@ on:
 jobs:
   hmmer_search:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Install dependencies
-      run: |
-        sudo sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
-        sudo apt-get update && sudo apt-get install -y build-essential gcc python3
-        pip install requests -i https://mirrors.aliyun.com/pypi/simple/
-        tar -xvf hmmer.tar.gz
-        cd hmmer-3.3.2
-        ./configure
-        make
-        sudo make install
-        export PATH="$PATH:~/hmmer-3.3.2/bin"
-        cd ..
-        python3 data_preparation.py
-        python3 python3 hmmer.py
-    - name: Run script
-      run: |
-        ls -la
-        chmod +x PFseed.txt
-        hmmbuild build.hmm PFseed.txt
-        hmmsearch build.hmm ./protein_sequence/${{ secrets.SPECIES }}.fasta > result.out
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: result
-        path: result.out
+      - uses: actions/checkout@v2
+
+      - name: Set up Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y build-essential gcc python3 python3-pip
+          pip install requests
+          tar -xvf hmmer.tar.gz
+          cd hmmer-3.3.2
+          ./configure
+          make
+          make install
+          export PATH="$PATH:$(pwd)/bin"
+          cd ..
+      - name: Run scripts
+        run: |
+          python3 data_preparation.py
+          python3 hmmer.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: hmmer-out
+          path: |
+            build.hmm
+            PFseed.txt
+            result.out
+
 
   extract_id:
     needs: hmmer_search
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Download result.out
-      uses: actions/download-artifact@v2
-      with:
-        name: result
-        path: ./
-    - name: Install dependencies
-      run: |
-        sudo sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
-        sudo apt-get update && sudo apt-get install python3 -y
-    - name: Run script
-      run: |
-        chmod +x extract_id.py
-        python3 extract_id.py
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: ids
-        path: id_list.txt
+      - uses: actions/checkout@v2
+      - name: Download result.out
+        uses: actions/download-artifact@v2
+      - name: Set up Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install python3 -y
+
+      - name: Run scripts
+        run: |
+          sudo chmod +x extract_id.py
+          python3 extract_id.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: id-list
+          path: |
+            id_list.txt
 
   extract_sequence:
     needs: extract_id
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Download id_list.txt
-      uses: actions/download-artifact@v2
-      with:
-        name: ids
-        path: ./
-    - name: Install dependencies
-      run: |
-        sudo apt-get update && sudo apt-get install python3-pip -y
-        pip install biopython
-    - name: Run script
-      run: |
-        chmod +x extract_sequence.py
-        python3 extract_sequence.py
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: sequences
-        path: protein_for_target_id.fasta
+      - uses: actions/checkout@v2
+      - name: Download id_list.txt
+        uses: actions/download-artifact@v2
+      - name: Set up Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install python3-pip -y
+          pip install biopython
+
+      - name: Run scripts
+        run: |
+          sudo chmod +x extract_sequence.py
+          python3 extract_sequence.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: sequence-data
+          path: |
+            protein_for_target_id.fasta
