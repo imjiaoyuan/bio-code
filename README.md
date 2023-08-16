@@ -2,7 +2,7 @@
 
 This study utilized GitLab CI/CD and GitHub Actions to automate the construction of the Hidden Markov Model ( HMM ) and conduct a search for Homeotic genes. It further screened out gene IDs that satisfy the user-defined threshold and extracted protein sequences from the obtained results files.
 
-[Click here to view the Chinese document](https://blog.hieroglyphs.top/post/e745dc74.html)
+[Click here to view the Chinese document](https://www.hieroglyphs.top/posts/e745dc74/)
 
 # Usage
 
