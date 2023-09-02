@@ -1,6 +1,7 @@
 from Bio import SeqIO
 from input import species
 
+# Define functions to extract sequences
 def extract_sequences(id_list, fasta_file, out_file):
     with open(id_list, 'r') as id_handle, open(out_file, 'w') as out_handle:
         ids = [line.strip() for line in id_handle.readlines()]
