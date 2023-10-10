@@ -1,7 +1,7 @@
 default:
   image:  ubuntu:latest
 
-program:
+auto-hmmer:
   before_script:
     - sed -i 's@//.*archive.ubuntu.com@//mirrors.ustc.edu.cn@g' /etc/apt/sources.list
     - apt-get update && apt-get install -y build-essential gcc python3 python3-pip
