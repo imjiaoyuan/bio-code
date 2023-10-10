@@ -33,7 +33,7 @@ After setting up the environment, modify the information in `config.py` and run 
 You need to clone the warehouse locally first.
 
 ```bash
-git clone 
+git clone https://github.com/YuanJ2003/auto-hmmer.git
 ```
 
 Fork this warehouse to your own account, modify the information in `config.py`, and submit the changes to the repository. CI/CD will help you complete the remaining tasks.
