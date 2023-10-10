@@ -48,7 +48,7 @@ You can also make modifications directly on the webpage of the code repository, 
 
 # Results
 
-You can download the completed files from the GitHub Action or Gitlab CI/CD running artifacts.
+If you are running locally, the results are clearly visible.If you are using it in the cloud,you can download the completed files from the GitHub Action or Gitlab CI/CD running artifacts.
 
 Usually contains the following three main artifacts:
 
