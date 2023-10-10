@@ -2,8 +2,6 @@
 
 This study utilized GitLab CI/CD and GitHub Actions to automate the construction of the Hidden Markov Model ( HMM ) and conduct a search for Homeotic genes. It further screened out gene IDs that satisfy the user-defined threshold and extracted protein sequences from the obtained results files.
 
-[Click here to view the Chinese document](https://www.hieroglyphs.top/posts/e745dc74/)
-
 # Usage
 
 You need to define the following variables in `config.py`.
@@ -57,6 +55,20 @@ Usually contains the following three main artifacts:
 > id_list.txt ( Filtered ID List )
 
 > protein_for_target_id.fasta ( Protein sequence extracted from ID list )
+
+# Customize the hmmer command
+
+You only need to define the format of the new command in `main.py`, such as the following command:
+
+```python
+hmmbuild_command = 'hmmbuild model.hmm PFseed.txt'
+```
+
+Then run the command by calling the function in `main.py`.
+
+```python
+run_command(hmmbuild_command)
+```
 
 # Problem
 
