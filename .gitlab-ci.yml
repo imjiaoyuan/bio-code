@@ -1,6 +1,9 @@
 default:
   image:  ubuntu:latest
 
+stage:
+  - program
+
 program:
   stage: program
   before_script:
