@@ -6,7 +6,7 @@ This study utilized GitLab CI/CD and GitHub Actions to automate the construction
 
 # Usage
 
-You need to define the following variables in `input.py`.
+You need to define the following variables in `config.py`.
 
 | name | example | description |
 | -- | -- | -- |
@@ -14,23 +14,49 @@ You need to define the following variables in `input.py`.
 | evaluation_threshold | 1e-5 | The threshold for filtering IDs from the results of hmmsearch |
 | species | Oryza_sativa | Species of gene family |
 
-The repository only contains the genome protein sequences of three species: Arabidopsis_thaliana , Oryza_sativa , and Zea_mays .
+The repository only contains the genome protein sequences of three species: Arabidopsis_thaliana , Oryza_sativa , Lolium_perenne, and Zea_mays .
+
+## Local usage
+
+I suggest that you use Conda for installation.
+
+```bash
+conda create -n hmmer python=3.7
+conda activate hmmer
+conda install wget biopython hmmer
+```
+
+After setting up the environment, modify the information in `config.py` and run `main.py`.
+
+## Cloud usage
+
+You need to clone the warehouse locally first.
+
+```bash
+git clone 
+```
+
+Fork this warehouse to your own account, modify the information in `config.py`, and submit the changes to the repository. CI/CD will help you complete the remaining tasks.
+
+```bash
+git add .
+git commit -m "update"
+git push
+```
+
+You can also make modifications directly on the webpage of the code repository, and the running results can be downloaded from the product.
 
 # Results
 
 You can download the completed files from the GitHub Action or Gitlab CI/CD running artifacts.
 
-Usually contains the following three artifacts:
+Usually contains the following three main artifacts:
 
 > result.out ( Results of hmmsearch )
 
 > id_list.txt ( Filtered ID List )
 
 > protein_for_target_id.fasta ( Protein sequence extracted from ID list )
-
-![](./assets/20230720140907.png)
-
-![](./assets/20230720003407.png)
 
 # Problem
 
