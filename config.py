@@ -1,4 +1,4 @@
-PF_number = "PF01439"
+PF_number = "PF02066"
 
 evaluation_threshold = "1e-5"
 
