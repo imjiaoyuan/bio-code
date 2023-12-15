@@ -24,6 +24,17 @@ conda env create --file auto-hmmer.yml
 conda activate auto-hmmer
 ```
 
+运行程序：
+```bash
+python3 main.py
+```
+
+清除上一次程序运行的结果：
+
+```bash
+bash rm_result.sh
+```
+
 ## Cloud usage
 
 `fork`此仓库，clone 到本地：
