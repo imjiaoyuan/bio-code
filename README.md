@@ -16,15 +16,13 @@
 
 ## Local usage
 
-使用 conda 建立一个单独的环境来使用，本地使用时需要自己安装 hmmer 和对应的 python 库。
+使用 conda 建立一个单独的环境来使用，本地使用时需要自己安装 hmmer 和对应的 python 库，推荐直接使用`auto-hmmer.yml`来创建环境。
 
 ```bash
-conda create -n hmmer python=3.7
-conda activate hmmer
-conda install wget biopython hmmer
+git clone https://github.com/UncleCAT4/auto-hmmer.git
+conda env create --file auto-hmmer.yml
+conda activate auto-hmmer
 ```
-
-环境搭建完成后修改 `config.py`然后运行`main.py`。
 
 ## Cloud usage
 
