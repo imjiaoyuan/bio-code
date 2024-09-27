@@ -1,0 +1,10 @@
+transcript:Os03t0390200-01	OsSAPK1
+transcript:Os07t0622000-01	OsSAPK2
+transcript:Os10t0564500-01	OsSAPK3
+transcript:Os01t0869900-01	OsSAPK4
+transcript:Os04t0691100-01	OsSAPK5
+transcript:Os02t0551100-01	OsSAPK6
+transcript:Os04t0432000-01	OsSAPK7
+transcript:Os03t0764800-01	OsSAPK8
+transcript:Os12t0586100-01	OsSAPK9
+transcript:Os03t0610900-01	OsSAPK10

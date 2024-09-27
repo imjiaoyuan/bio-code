@@ -1,0 +1,18 @@
+#Batch CD-search tool	NIH/NLM/NCBI
+#cdsid	QM3-qcdsearch-228F08FF2C2FABD-2F592F69A3B87819
+#datatype	hitsConcise Results
+#status	0
+#Start time	2024-04-27T01:12:09	Run time	0:00:00:09
+#status	success
+
+Query	Hit type	PSSM-ID	From	To	E-Value	Bitscore	Accession	Short name	Incomplete	Superfamily
+Q#1 - >transcript:Os03t0390200-01	specific	271132	3	259	0	587.891	cd14662	STKc_SnRK2	 - 	cl21453
+Q#2 - >transcript:Os07t0622000-01	specific	271132	3	259	0	586.736	cd14662	STKc_SnRK2	 - 	cl21453
+Q#3 - >transcript:Os10t0564500-01	specific	271132	4	260	0	559.772	cd14662	STKc_SnRK2	 - 	cl21453
+Q#4 - >transcript:Os01t0869900-01	specific	271132	3	259	0	570.172	cd14662	STKc_SnRK2	 - 	cl21453
+Q#5 - >transcript:Os04t0691100-01	specific	271132	3	259	0	569.787	cd14662	STKc_SnRK2	 - 	cl21453
+Q#6 - >transcript:Os02t0551100-01	specific	271132	3	259	0	585.195	cd14662	STKc_SnRK2	 - 	cl21453
+Q#7 - >transcript:Os04t0432000-01	specific	271132	3	259	0	585.58	cd14662	STKc_SnRK2	 - 	cl21453
+Q#8 - >transcript:Os03t0764800-01	specific	271132	32	288	0	553.994	cd14662	STKc_SnRK2	 - 	cl21453
+Q#9 - >transcript:Os12t0586100-01	specific	271132	21	277	0	575.95	cd14662	STKc_SnRK2	 - 	cl21453
+Q#10 - >transcript:Os03t0610900-01	specific	271135	22	278	0	576.166	cd14665	STKc_SnRK2-3	 - 	cl21453

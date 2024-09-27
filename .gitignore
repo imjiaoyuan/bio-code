@@ -1,9 +1,0 @@
-__pycache__/*
-__pycache__
-model*.hmm
-PFseed*.txt
-hmm*.gz
-PFseed*.gz
-id_list*.txt
-result*.out
-protein_for_target_id*.fasta

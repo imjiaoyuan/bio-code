@@ -1,0 +1,5 @@
+#!/bin/bash
+for i in {73..84} 
+do     
+    featureCounts -T 5 -t exon -g gene_id -a annotation.gtf -o  gene.counts -p SRR10991573 SRR10991574 SRR10991575 SRR10991576 SRR10991577 SRR10991578 SRR10991579 SRR10991580 SRR10991581 SRR10991582 SRR10991583 SRR10991584 
+done

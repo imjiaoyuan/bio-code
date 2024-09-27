@@ -1,0 +1,9 @@
+3	OsSAPK1	15628109	15632425	-	ID	OsSAPK1	Parent	gene:Os03g0390200	biotype	protein_coding	tag	Ensembl_canonical	transcript_id	Os03t0390200-01
+7	OsSAPK2	25717837	25722009	+	ID	OsSAPK2	Parent	gene:Os07g0622000	biotype	protein_coding	tag	Ensembl_canonical	transcript_id	Os07t0622000-01
+10	OsSAPK3	22294896	22297645	-	ID	OsSAPK3	Parent	gene:Os10g0564500	biotype	protein_coding	tag	Ensembl_canonical	transcript_id	Os10t0564500-01
+1	OsSAPK4	37710241	37714835	+	ID	OsSAPK4	Parent	gene:Os01g0869900	biotype	protein_coding	tag	Ensembl_canonical	transcript_id	Os01t0869900-01
+4	OsSAPK5	35344338	35346212	+	ID	OsSAPK5	Parent	gene:Os04g0691100	biotype	protein_coding	tag	Ensembl_canonical	transcript_id	Os04t0691100-01
+2	OsSAPK6	20746335	20751320	-	ID	OsSAPK6	Parent	gene:Os02g0551100	biotype	protein_coding	tag	Ensembl_canonical	transcript_id	Os02t0551100-01
+3	OsSAPK8	31652794	31658094	+	ID	OsSAPK8	Parent	gene:Os03g0764800	biotype	protein_coding	tag	Ensembl_canonical	transcript_id	Os03t0764800-01
+12	OsSAPK9	24459198	24462001	-	ID	OsSAPK9	Parent	gene:Os12g0586100	biotype	protein_coding	tag	Ensembl_canonical	transcript_id	Os12t0586100-01
+3	OsSAPK10	23068746	23071156	-	ID	OsSAPK10	Parent	gene:Os03g0610900	biotype	protein_coding	tag	Ensembl_canonical	transcript_id	Os03t0610900-01
